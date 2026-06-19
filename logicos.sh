@@ -26,9 +26,9 @@ declare -a logicielapt=("terminator" "gnome-shell-extensions" "gnome-shell-exten
 
 # Emplacements choisis
 # pour les applications non installées avec APT ou Snap
-dossier="~/bin"
+dossier=~/bin
 # pour les icônes
-icone="~/.icons"
+icone=~/.icons
 
 # Début du téléchargement et de l'installation
 sudo apt-get update
@@ -47,10 +47,13 @@ echo "Sacrée liste, hein ?"
 # Création des différents dossiers qui serviront aux logiciels qui ne sont pas installés avec APT
 # Dossier logicos à la racine du répertoire utilisateur pour centraliser les fichiers téléchargés
 mkdir ~/logicos
+sleep 1
 # Création du dossier pour les logiciels installés en-dehors de APT et Snap
 mkdir $dossier
+sleep 1
 # Création du dossier pour les icônes
 mkdir $icone
+sleep 1
 cp icone/* $icone/
 cd ~/logicos
 
@@ -142,6 +145,10 @@ echo "Installation de Processing"
 sleep 1
 sudo snap install processing --classic
 echo "Installation de Processing terminée"
+sleep 1
+echo "Installation de VS Codium"
+sudo snap install codium --classic
+echo "VS Codium installé"
 sleep 1
 
 # GBStudio
