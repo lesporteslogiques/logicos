@@ -32,11 +32,17 @@ icone="~/.icons"
 
 # Début du téléchargement et de l'installation
 sudo apt-get update
-for i in "${logicielapt[@]}"; do
+#for i in "${logicielapt[@]}"; do
     # Installation des logiciels un par un, avec confirmation automatique
-    sudo apt-get -y install $i
-done
-echo "sacrée liste, hein ?"
+#    sudo apt-get -y install $i
+#done
+sudo apt-get -y install terminator gnome-shell-extensions gnome-shell-extension-gsconnect syncthing git\
+ texlive-extra-utils poppler-utils pdfposter ffmpeg imagemagick sox audacity puredata plugdata chuck\
+ audacious supercollider mixxx qsynth furnace orca pilot liquidsoap jackd gimp inkscape inkscape-silhouette\
+ scribus fontforge krita python3 python3-usb python3-matplotlib python3-tinycss2 vlc kdenlive cheese obs-studio\
+ aegisub kicad arduino fritzing freecad openscad cura blender gmsh codium notepadqq python3-pip pipx\
+ python3-renpy libreoffice-common libreoffice-l10n-fr libreoffice-help-fr libfuse2
+echo "Sacrée liste, hein ?"
 
 # Création des différents dossiers qui serviront aux logiciels qui ne sont pas installés avec APT
 # Dossier logicos à la racine du répertoire utilisateur pour centraliser les fichiers téléchargés
@@ -51,14 +57,16 @@ cd ~/logicos
 # Balena Etcher
 wget https://github.com/balena-io/etcher/releases/download/v2.1.6/balena-etcher_2.1.6_amd64.deb
 # 1. Extraction du paquet
-dpkg-deb -R balena-etcher_2.1.6_amd64.deb etcher-fix
+#dpkg-deb -R balena-etcher_2.1.6_amd64.deb etcher-fix
 # 2. Mise à jour de la dépendance avec le nom compatible avec Debian 13
-sed -i 's/libgdk-pixbuf2.0-0/libgdk-pixbuf-2.0-0/g' etcher-fix/DEBIAN/control
+#sed -i 's/libgdk-pixbuf2.0-0/libgdk-pixbuf-2.0-0/g' etcher-fix/DEBIAN/control
 # 3. Rebuild
-dpkg-deb -b etcher-fix balena-etcher-fixed_2.1.6_amd64.deb
+#dpkg-deb -b etcher-fix balena-etcher-fixed_2.1.6_amd64.deb
 # 4. Installer
-sudo apt-get -y install ./balena-etcher-fixed_2.1.6.deb
+#sudo apt-get -y install ./balena-etcher-fixed_2.1.6_amd64.deb
+sudo apt-get -y install ./balena-etcher_2.1.6_amd64.deb
 echo "Voilà, Etcher est installé"
+sleep 1
 
 # ImHex
 wget https://github.com/WerWolv/ImHex/releases/download/v1.38.1/imhex-1.38.1-arm64.AppImage -P $dossier/imhex-1.38.1
@@ -120,7 +128,7 @@ wget https://github.com/teras/Jubler/releases/download/v9.0.1/Jubler-9.0.1-x86_6
 -P $dossier/jubler-9.0.1
 
 # Arduino
-wget https://downloads.arduino.cc/arduino-ide/arduino-ide_2.3.10_Linux_64bit.AppImage 6P $dossier/arduino-2.3.10
+wget https://downloads.arduino.cc/arduino-ide/arduino-ide_2.3.10_Linux_64bit.AppImage -P $dossier/arduino-2.3.10
 
 # Vpype
 pipx install vpype[all]
