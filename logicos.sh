@@ -189,13 +189,10 @@ declare -a logicielnonapt=("$dossier/imhex-1.38.1/imhex-1.38.1-arm64.AppImage" "
 "firefox https://www.bitsy.org/")
 
 cd ~/.local/share/applications
-nb=-1
-# On compte le nombre de logiciels dans la liste au-dessus (méthode probablement utilisée à l'avenir pour la liste APT)
-for j in "${logicielnonapt[@]}"; do
-    nb+=$((nb + 1))
-done
-for i in $(seq 0 $nb); do
+
+for i in {0..13}; do
     touch ${nomraccourci[$i]}.desktop
+    sleep 1
     cat << EOF >> ${nomraccourci[$i]}.desktop
 [Desktop Entry]
 Encoding=UTF-8
@@ -204,6 +201,8 @@ Name=${nomlogiciel[$i]}
 Exec=${logicielnonapt[$i]}
 Icon=$icone/${nomraccourci[$i]}.png
 EOF
+echo "Icône pour ${nomlogiciel[$i]}"
+sleep 1
 done
 
 update-desktop-database ~/.local/share/applications
