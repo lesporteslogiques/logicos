@@ -37,10 +37,10 @@ sudo apt-get update
 #    sudo apt-get -y install $i
 #done
 sudo apt-get -y install terminator gnome-shell-extensions gnome-shell-extension-gsconnect syncthing git\
- texlive-extra-utils poppler-utils pdfposter ffmpeg imagemagick sox audacity puredata plugdata chuck\
- audacious supercollider mixxx qsynth furnace orca pilot liquidsoap jackd gimp inkscape inkscape-silhouette\
+ texlive-extra-utils poppler-utils pdfposter ffmpeg imagemagick sox audacity puredata chuck\
+ audacious supercollider mixxx qsynth furnace orca pilot liquidsoap jackd gimp inkscape \
  scribus fontforge krita python3 python3-usb python3-matplotlib python3-tinycss2 vlc kdenlive cheese obs-studio\
- aegisub kicad arduino fritzing freecad openscad cura blender gmsh codium notepadqq python3-pip pipx\
+ aegisub kicad arduino fritzing freecad openscad cura blender gmsh notepadqq python3-pip pipx\
  python3-renpy libreoffice-common libreoffice-l10n-fr libreoffice-help-fr libfuse2
 echo "Sacrée liste, hein ?"
 
@@ -57,18 +57,17 @@ sleep 1
 cp icone/* $icone/
 cd ~/logicos
 
+# Plugdata
+wget https://download.opensuse.org/repositories/home:/plugdata/Debian_13/amd64/plugdata_0.9.32+git.0.49aa12ba-1_amd64.deb
+# Inkscape-Silhouette
+wget https://github.com/fablabnbg/inkscape-silhouette/releases/download/v1.29/inkscape-silhouette_1.29-1_all.deb
 # Balena Etcher
 wget https://github.com/balena-io/etcher/releases/download/v2.1.6/balena-etcher_2.1.6_amd64.deb
-# 1. Extraction du paquet
-#dpkg-deb -R balena-etcher_2.1.6_amd64.deb etcher-fix
-# 2. Mise à jour de la dépendance avec le nom compatible avec Debian 13
-#sed -i 's/libgdk-pixbuf2.0-0/libgdk-pixbuf-2.0-0/g' etcher-fix/DEBIAN/control
-# 3. Rebuild
-#dpkg-deb -b etcher-fix balena-etcher-fixed_2.1.6_amd64.deb
-# 4. Installer
-#sudo apt-get -y install ./balena-etcher-fixed_2.1.6_amd64.deb
-sudo apt-get -y install ./balena-etcher_2.1.6_amd64.deb
-echo "Voilà, Etcher est installé"
+# Ink/Stitch
+wget https://github.com/inkstitch/inkstitch/releases/latest/download/inkstitch_3.2.2_amd64.deb
+# Installation des paquets
+sudo apt-get -y install ./balena-etcher_2.1.6_amd64.deb ./inkscape-silhouette_1.29-1_all.deb ./inkstitch_3.2.2_amd64.deb ./plugdata_0.9.32+git.0.49aa12ba-1_amd64.deb
+
 sleep 1
 
 # ImHex
@@ -119,8 +118,6 @@ mkdir $dossier/rack-2.6.6
 mv Rack2Free/* $dossier/rack-2.6.6/
 
 # Ink/stitch
-wget https://github.com/inkstitch/inkstitch/releases/latest/download/inkstitch_3.2.2_amd64.deb
-sudo apt-get -y install ./inkstitch_3.2.2_amd64.deb
 
 # Friction
 wget https://github.com/friction2d/friction/releases/download/v1.0.0-rc.3/Friction-1.0.0-rc.3-x86_64.AppImage \
