@@ -15,14 +15,13 @@ declare -a logicielnonapt=("$dossier/imhex-1.38.1/imhex-1.38.1-arm64.AppImage" "
 cd ~/.local/share/applications
 
 for i in {0..13}; do
-    touch ${nomraccourci[$i]}.desktop
-    cat << EOF >> ${nomraccourci[$i]}.desktop
+    cat << EOF > ${nomraccourci[$i]}.desktop
 [Desktop Entry]
-Encoding=UTF-8
 Type=Application
 Name=${nomlogiciel[$i]}
 Exec=${logicielnonapt[$i]}
 Icon=$icone/${nomraccourci[$i]}.png
+Terminal=false
 EOF
 echo "Raccourci pour ${nomlogiciel[$i]}"
 done

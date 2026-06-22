@@ -1,6 +1,12 @@
 #!/bin/bash
 # Script d'installation des logiciels (et leurs extensions) de LogicOS
 
+if ! id -nG $USER | grep -qw "sudo"; then
+echo "Ce script a été concu pour Debian et dans le cas où l'utilisateur a les droits administrateur. \
+Or ce dernier ne semble pas en faire partie ou la distribution n'est pas Debian ou une variante basée sur Debian."
+exit
+fi
+
 echo "Script d'installation de la suite logicielle LogicOS"
 echo "Ce script est prévu pour les distributions basées sur Debian"
 read -p "Souhaitez-vous débuter ? [oN] " ouinon
@@ -13,7 +19,8 @@ while true; do
     esac
 done
 
-echo "haha installation go brr"
+echo "début de l'installation..."
+sleep 1
 
 # Liste des logiciels installés avec APT
 declare -a logicielapt=("terminator" "gnome-shell-extensions" "gnome-shell-extension-gsconnect" "syncthing" "git" \
@@ -40,9 +47,10 @@ sudo apt-get -y install terminator gnome-shell-extensions gnome-shell-extension-
  texlive-extra-utils poppler-utils pdfposter ffmpeg imagemagick sox audacity puredata chuck\
  audacious supercollider mixxx qsynth furnace orca pilot liquidsoap jackd gimp inkscape \
  scribus fontforge krita python3 python3-usb python3-matplotlib python3-tinycss2 vlc kdenlive cheese obs-studio\
- aegisub kicad arduino fritzing freecad openscad cura blender gmsh notepadqq python3-pip pipx\
+ aegisub kicad arduino fritzing freecad openscad blender gmsh notepadqq python3-pip pipx\
  python3-renpy libreoffice-common libreoffice-l10n-fr libreoffice-help-fr libfuse2
-echo "Sacrée liste, hein ?"
+echo "Installation par APT terminée"
+sleep 2
 
 # Création des différents dossiers qui serviront aux logiciels qui ne sont pas installés avec APT
 # Dossier logicos à la racine du répertoire utilisateur pour centraliser les fichiers téléchargés
@@ -57,6 +65,8 @@ sleep 1
 cp icone/* $icone/
 cd ~/logicos
 
+echo "Téléchargement des paquets .deb qui ne sont pas dans les dépôts officiels Debian"
+sleep 1
 # Plugdata
 wget https://download.opensuse.org/repositories/home:/plugdata/Debian_13/amd64/plugdata_0.9.32+git.0.49aa12ba-1_amd64.deb
 # Inkscape-Silhouette
@@ -70,9 +80,12 @@ sudo apt-get -y install ./balena-etcher_2.1.6_amd64.deb ./inkscape-silhouette_1.
 
 sleep 1
 
+# Cura
+wget https://github.com/Ultimaker/Cura/releases/download/5.12.0/UltiMaker-Cura-5.12.0-linux-X64.AppImage -P $dossier/cura-5.12
+sleep 1
 # ImHex
 wget https://github.com/WerWolv/ImHex/releases/download/v1.38.1/imhex-1.38.1-arm64.AppImage -P $dossier/imhex-1.38.1
-
+sleep 1
 # Reaper
 wget https://www.reaper.fm/files/7.x/reaper774_linux_x86_64.tar.xz
 tar -xf reaper774_linux_x86_64.tar.xz
@@ -177,11 +190,12 @@ wget https://github.com/logseq/logseq/releases/download/0.10.15/Logseq-linux-x64
 
 
 # Création des icônes dans le lanceur
-declare -a nomraccourci=("imhex" "automatonism" "soundthread" "rack" "friction" "jubler" "arduino" "gbstudio" \
+declare -a nomraccourci=("cura" "imhex" "automatonism" "soundthread" "rack" "friction" "jubler" "arduino" "gbstudio" \
 "libresprite" "tiled" "godot" "twine" "logseq" "bitsy")
-declare -a nomlogiciel=("ImHex" "Automatonism" "SoundThread" "Rack" "Friction" "Jubler" "Arduino 2-3-10" \
+declare -a nomlogiciel=("Cura" "ImHex" "Automatonism" "SoundThread" "Rack" "Friction" "Jubler" "Arduino 2-3-10" \
 "GB Studio" "LibreSprite" "Tiled" "Godot" "Twine" "Logseq" "Bitsy")
-declare -a logicielnonapt=("$dossier/imhex-1.38.1/imhex-1.38.1-arm64.AppImage" "puredata $dossier/automatism-3.1/main.pd" "$dossier/soundthread-0.4.0/SoundThread.x86_64" \
+declare -a logicielnonapt=("$dossier/cura-5.12/UltiMaker-Cura-5.12.0-linux-X64.AppImage" \
+"$dossier/imhex-1.38.1/imhex-1.38.1-arm64.AppImage" "puredata $dossier/automatism-3.1/main.pd" "$dossier/soundthread-0.4.0/SoundThread.x86_64" \
 "$dossier/rack-2.6.6/Rack" "$dossier/friction-1.0/Friction-1.0.0-rc.3-x86_64.AppImage" "$dossier/jubler-9.0.1/Jubler-9.0.1-x86_64.AppImage" \
 "$dossier/arduino-2.3.10/arduino-ide_2.3.10_Linux_64bit.AppImage" "$dossier/gbstudio-4.3.1/gb-studio-linux.AppImage" \
 "$dossier/libresprite-1.1/LibreSprite-x86_64.AppImage" "$dossier/tiled-1.12.2/Tiled-1.12.2_Linux_x86_64.AppImage" \
@@ -198,7 +212,6 @@ Name=${nomlogiciel[$i]}
 Exec=${logicielnonapt[$i]}
 Icon=$icone/${nomraccourci[$i]}.png
 Terminal=false
-Category=LogicOS;
 EOF
 echo "Raccourci pour ${nomlogiciel[$i]}"
 sleep 1
