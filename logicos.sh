@@ -100,6 +100,7 @@ wget https://www.automatonism.com/s/Automatonism-31.zip
 7z x Automatism-31.zip -o./automatism
 mkdir $dossier/automatism-3.1
 mv automatism/Automatism\ 3.1/* $dossier/automatism-3.1/
+sleep 1
 
 # /!\ Installation de SonicPi désactivée en attendant de s'assurer que ce dernier puisse être compilé et installé correctement
 # Sonic Pi
@@ -123,28 +124,34 @@ wget https://github.com/j-p-higgins/SoundThread/releases/download/v0.4.0-beta/So
 tar -xf SoundThread_v0-4-0-beta_linux_x86_64.tar.gz
 mkdir $dossier/soundthread-0.4.0
 mv SoundThread_v0-4-0-beta_linux_x86_64/* $dossier/soundthread-0.4.0/
+sleep 1
 
 # Rack
 wget https://vcvrack.com/downloads/RackFree-2.6.6-lin-x64.zip
 mkdir $dossier/rack-2.6.6
 7z x RackFree-2.6.6-lin-x64.zip
 mv Rack2Free/* $dossier/rack-2.6.6/
+sleep 1
 
 # Ink/stitch
 
 # Friction
 wget https://github.com/friction2d/friction/releases/download/v1.0.0-rc.3/Friction-1.0.0-rc.3-x86_64.AppImage \
 -P $dossier/friction-1.0
+sleep 1
 
 # Jubler
 wget https://github.com/teras/Jubler/releases/download/v9.0.1/Jubler-9.0.1-x86_64.AppImage \
 -P $dossier/jubler-9.0.1
+sleep 1
 
 # Arduino
 wget https://downloads.arduino.cc/arduino-ide/arduino-ide_2.3.10_Linux_64bit.AppImage -P $dossier/arduino-2.3.10
+sleep 1
 
 # Vpype
 pipx install vpype[all]
+sleep 1
 
 # Processing
 echo "Installation de Snap"
@@ -163,30 +170,36 @@ sleep 1
 
 # GBStudio
 wget https://github.com/chrismaltby/gb-studio/releases/download/v4.3.1/gb-studio-linux.AppImage -P $dossier/gbstudio-4.3.1
+sleep 1
 
 # LibreSprite
 wget https://github.com/LibreSprite/LibreSprite/releases/download/v1.1/libresprite-development-linux-x86_64.zip
 7z x libresprite-development-linux-x86_64.zip
 mkdir $dossier/libresprite-1.1
 mv LibreSprite-x86_64.AppImage $dossier/libresprite-1.1/
+sleep 1
 
 # Tiled
 wget https://github.com/mapeditor/tiled/releases/download/v1.12.2/Tiled-1.12.2_Linux_x86_64.AppImage -P $dossier/tiled-1.12.2
+sleep 1
 
 # Godot
 wget https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip
 7z x Godot_v4.6.3-stable_linux.x86_64.zip
 mkdir $dossier/godot-4.6.3
 mv Godot_v4.6.3-stable_linux.x86_64 $dossier/godot-4.6.3/
+sleep 1
 
 # Twine
 wget https://github.com/klembot/twinejs/releases/download/2.12.0/Twine-2.12.0-Linux-x64.zip
 mkdir twine-2.12
 7z x Twine-2.12.0-Linux-x64.zip -o./twine-2.12
 mv twine-2.12 $dossier/
+sleep 1
 
 # Logseq
 wget https://github.com/logseq/logseq/releases/download/0.10.15/Logseq-linux-x64-0.10.15.AppImage -P $dossier/logseq-0.10.15
+sleep 1
 
 
 # Création des icônes dans le lanceur
