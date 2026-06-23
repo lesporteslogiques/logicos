@@ -217,7 +217,7 @@ declare -a logicielnonapt=("$dossier/cura-5.12/UltiMaker-Cura-5.12.0-linux-X64.A
 
 cd ~/.local/share/applications
 
-for i in {0..13}; do
+for i in {0..14}; do
     cat << EOF > ${nomraccourci[$i]}.desktop
 [Desktop Entry]
 Type=Application
