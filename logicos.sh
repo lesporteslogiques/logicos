@@ -232,6 +232,6 @@ chmod +x ${nomraccourci[$i]}.desktop
 done
 
 sleep 2
-update-desktop-database /usr/share/applications
+update-desktop-database ~/.local/share/applications
 
 echo "L'installation des logiciels est terminée"
