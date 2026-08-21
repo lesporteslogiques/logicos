@@ -13,8 +13,8 @@ read -p "Souhaitez-vous débuter ? [oN] " ouinon
 
 while true; do
     case $ouinon in
-        [oO]* ) echo "cool, on y va alors"; break;;
-        [nN]* ) echo "okay bah a plus alors"; exit;;
+        [oO]* ) echo "Confirmé"; break;;
+        [nN]* ) echo "Arrêt du script"; exit;;
         * ) read -p "Erreur de saisie, voulez-vous lancer l'installation ? [oN] " ouinon;;
     esac
 done
@@ -232,6 +232,6 @@ chmod +x ${nomraccourci[$i]}.desktop
 done
 
 sleep 2
-update-desktop-database ~/.local/share/applications
+update-desktop-database /usr/share/applications
 
 echo "L'installation des logiciels est terminée"

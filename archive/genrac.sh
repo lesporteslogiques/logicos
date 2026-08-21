@@ -12,7 +12,8 @@ declare -a logicielnonapt=("$dossier/imhex-1.38.1/imhex-1.38.1-arm64.AppImage" "
 "$dossier/godot-4.6.3/Godot_v4.6.3-stable_linux.x86_64" "$dossier/twine-2.12/twine" "$dossier/logseq-0.10.15/Logseq-linux-x64-0.10.15.AppImage" \
 "firefox https://www.bitsy.org/")
 
-cd ~/.local/share/applications
+mkdir raccourcis
+cd raccourcis
 
 for i in {0..13}; do
     cat << EOF > ${nomraccourci[$i]}.desktop
@@ -26,4 +27,6 @@ EOF
 echo "Raccourci pour ${nomlogiciel[$i]}"
 done
 
-update-desktop-database ~/.local/share/applications
+sudo cp *.desktop /usr/local/share/applications/
+
+update-desktop-database /usr/local/share/applications
