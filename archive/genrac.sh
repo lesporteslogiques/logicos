@@ -27,6 +27,6 @@ EOF
 echo "Raccourci pour ${nomlogiciel[$i]}"
 done
 
-sudo cp *.desktop /usr/local/share/applications/
+sudo cp *.desktop /usr/share/applications/
 
-update-desktop-database /usr/local/share/applications
+update-desktop-database /usr/share/applications
